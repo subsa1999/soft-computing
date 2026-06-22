@@ -33,7 +33,7 @@ $\chi_A$ is called the **characteristic function**.
 
 ### Representation
 - **Roster form:** $A = \{1, 2, 3, 5, 7\}$
-- **Set-builder:** $A = \{x \in \mathbb{N} : x \le 7,\; x\text{ is prime or }1\}$
+- **Set-builder:** $A = \{x \in \mathbb{N} : x \le 7,  x\text{ is prime or }1\}$
 - **Characteristic vector:** for $X=\{1,2,\dots,8\}$, $\chi_A = (1,1,1,0,1,0,1,0)$
 
 ---
@@ -57,15 +57,15 @@ Let $A, B \subseteq X$.
 
 | Law | Statement |
 |---|---|
-| **Commutative** | $A\cup B = B\cup A,\; A\cap B = B\cap A$ |
+| **Commutative** | $A\cup B = B\cup A,  A\cap B = B\cap A$ |
 | **Associative** | $(A\cup B)\cup C = A\cup(B\cup C)$ |
 | **Distributive** | $A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$ |
-| **Idempotent** | $A\cup A = A,\; A\cap A = A$ |
-| **Identity** | $A\cup\emptyset = A,\; A\cap X = A$ |
-| **Domination** | $A\cup X = X,\; A\cap\emptyset = \emptyset$ |
+| **Idempotent** | $A\cup A = A,  A\cap A = A$ |
+| **Identity** | $A\cup\emptyset = A,  A\cap X = A$ |
+| **Domination** | $A\cup X = X,  A\cap\emptyset = \emptyset$ |
 | **Involution** | $\bar{\bar A} = A$ |
 | **De Morgan's** | $\overline{A\cup B}=\bar A\cap \bar B$ |
-| **Absorption** | $A\cup(A\cap B)=A,\; A\cap(A\cup B)=A$ |
+| **Absorption** | $A\cup(A\cap B)=A,  A\cap(A\cup B)=A$ |
 | **Law of Excluded Middle** | $A\cup\bar A = X$ ✅ holds |
 | **Law of Contradiction** | $A\cap\bar A = \emptyset$ ✅ holds |
 
@@ -92,7 +92,7 @@ $$
 **Zadeh's notation:**
 
 $$
-\tilde A \;=\; \sum_{x_i \in X}\frac{\mu_{\tilde A}(x_i)}{x_i} \quad\text{(discrete)} \qquad \tilde A \;=\; \int_X \frac{\mu_{\tilde A}(x)}{x} \quad\text{(continuous)}
+\tilde A  =  \sum_{x_i \in X}\frac{\mu_{\tilde A}(x_i)}{x_i} \quad\text{(discrete)} \qquad \tilde A  =  \int_X \frac{\mu_{\tilde A}(x)}{x} \quad\text{(continuous)}
 $$
 
 > The "+" and "/" are **symbolic**, *not* arithmetic.
@@ -108,12 +108,12 @@ Let $\tilde A, \tilde B$ be fuzzy sets on $X$.
 | **Union** | $\mu_{\tilde A\cup\tilde B}(x)=\max(\mu_{\tilde A}(x),\mu_{\tilde B}(x))$ |
 | **Intersection** | $\mu_{\tilde A\cap\tilde B}(x)=\min(\mu_{\tilde A}(x),\mu_{\tilde B}(x))$ |
 | **Complement** | $\mu_{\bar{\tilde A}}(x)=1-\mu_{\tilde A}(x)$ |
-| **Equality** | $\tilde A=\tilde B \iff \mu_{\tilde A}(x)=\mu_{\tilde B}(x)\;\forall x$ |
-| **Containment** | $\tilde A\subseteq\tilde B \iff \mu_{\tilde A}(x)\le\mu_{\tilde B}(x)\;\forall x$ |
+| **Equality** | $\tilde A=\tilde B \iff \mu_{\tilde A}(x)=\mu_{\tilde B}(x) \forall x$ |
+| **Containment** | $\tilde A\subseteq\tilde B \iff \mu_{\tilde A}(x)\le\mu_{\tilde B}(x) \forall x$ |
 | **Algebraic product** | $\mu_{\tilde A\cdot\tilde B}(x)=\mu_{\tilde A}(x)\cdot\mu_{\tilde B}(x)$ |
 | **Algebraic sum** | $\mu_{\tilde A+\tilde B}(x)=\mu_{\tilde A}(x)+\mu_{\tilde B}(x)-\mu_{\tilde A}(x)\mu_{\tilde B}(x)$ |
-| **Bounded sum** | $\mu(x)=\min(1,\,\mu_{\tilde A}(x)+\mu_{\tilde B}(x))$ |
-| **Bounded difference** | $\mu(x)=\max(0,\,\mu_{\tilde A}(x)-\mu_{\tilde B}(x))$ |
+| **Bounded sum** | $\mu(x)=\min(1, \mu_{\tilde A}(x)+\mu_{\tilde B}(x))$ |
+| **Bounded difference** | $\mu(x)=\max(0, \mu_{\tilde A}(x)-\mu_{\tilde B}(x))$ |
 | **Power** | $\tilde A^p$ has $\mu(x)=[\mu_{\tilde A}(x)]^p$ |
 
 ### Generalized — *t*-norms & *s*-norms (*t*-conorms)
@@ -157,12 +157,12 @@ $\mu_{\tilde A \cap \bar{\tilde A}}(x) = \min(0.4,0.6) = 0.4 \ne 0$.
 
 ### Scalar (sigma) cardinality
 $$
-|\tilde A| \;=\; \sum_{x \in X} \mu_{\tilde A}(x) \qquad\text{(discrete)}\qquad |\tilde A| \;=\; \int_X \mu_{\tilde A}(x)\,dx \qquad\text{(continuous)}
+|\tilde A|  =  \sum_{x \in X} \mu_{\tilde A}(x) \qquad\text{(discrete)}\qquad |\tilde A|  =  \int_X \mu_{\tilde A}(x) dx \qquad\text{(continuous)}
 $$
 
 ### Relative cardinality
 $$
-\|\tilde A\| \;=\; \frac{|\tilde A|}{|X|}
+\|\tilde A\|  =  \frac{|\tilde A|}{|X|}
 $$
 
 ### Fuzzy cardinality
@@ -178,7 +178,7 @@ $X=\{a,b,c,d,e\}$,
 $\tilde A=\tfrac{0.1}{a}+\tfrac{0.4}{b}+\tfrac{0.7}{c}+\tfrac{1.0}{d}+\tfrac{0.3}{e}$,
 $\tilde B=\tfrac{0.5}{a}+\tfrac{0.6}{b}+\tfrac{0.2}{c}+\tfrac{0.8}{d}+\tfrac{0.4}{e}$.
 
-Find $\tilde A\cup\tilde B,\;\tilde A\cap\tilde B,\;\bar{\tilde A},\;|\tilde A|,\;\|\tilde A\|$, algebraic product and bounded sum.
+Find $\tilde A\cup\tilde B, \tilde A\cap\tilde B, \bar{\tilde A}, |\tilde A|, \|\tilde A\|$, algebraic product and bounded sum.
 
 | $x$ | $\mu_A$ | $\mu_B$ | $\cup$ | $\cap$ | $1-\mu_A$ | $\mu_A\mu_B$ | $\min(1,\mu_A+\mu_B)$ |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -242,12 +242,12 @@ Given $\tilde R$ on $X\times Y$ and $\tilde S$ on $Y\times Z$, the composition $
 
 ### Max–Min Composition
 $$
-\mu_{\tilde R \circ \tilde S}(x,z) \;=\; \max_{y \in Y}\,\min\!\bigl(\mu_{\tilde R}(x,y),\,\mu_{\tilde S}(y,z)\bigr)
+\mu_{\tilde R \circ \tilde S}(x,z)  =  \max_{y \in Y} \min\bigl(\mu_{\tilde R}(x,y), \mu_{\tilde S}(y,z)\bigr)
 $$
 
 ### Max–Product Composition
 $$
-\mu_{\tilde R \circ \tilde S}(x,z) \;=\; \max_{y \in Y}\,\bigl(\mu_{\tilde R}(x,y)\cdot\mu_{\tilde S}(y,z)\bigr)
+\mu_{\tilde R \circ \tilde S}(x,z)  =  \max_{y \in Y} \bigl(\mu_{\tilde R}(x,y)\cdot\mu_{\tilde S}(y,z)\bigr)
 $$
 
 > Composition is analogous to matrix multiplication where $(+,\times)$ → $(\max,\min)$ or $(\max,\cdot)$.
@@ -260,7 +260,7 @@ A fuzzy relation $\tilde R$ on $X\times X$ may have:
 
 | Property | Definition |
 |---|---|
-| **Reflexive** | $\mu_{\tilde R}(x,x)=1 \;\forall x$ |
+| **Reflexive** | $\mu_{\tilde R}(x,x)=1  \forall x$ |
 | **Symmetric** | $\mu_{\tilde R}(x,y)=\mu_{\tilde R}(y,x)$ |
 | **Anti-symmetric** | If $\mu_{\tilde R}(x,y)>0$ and $\mu_{\tilde R}(y,x)>0$ then $x=y$ |
 | **Transitive** (max-min) | $\mu_{\tilde R}(x,z)\ge\max_y\min(\mu_{\tilde R}(x,y),\mu_{\tilde R}(y,z))$ |
@@ -270,14 +270,14 @@ A fuzzy relation $\tilde R$ on $X\times X$ may have:
 ### Cardinality of a Fuzzy Relation
 
 $$
-|\tilde R| \;=\; \sum_{x,y} \mu_{\tilde R}(x,y)
+|\tilde R|  =  \sum_{x,y} \mu_{\tilde R}(x,y)
 $$
 
 ---
 
 ## ✏️ 3.5 Solved Problem — Max-Min Composition
 
-$X=\{x_1,x_2\},\,Y=\{y_1,y_2,y_3\},\,Z=\{z_1,z_2\}$.
+$X=\{x_1,x_2\}, Y=\{y_1,y_2,y_3\}, Z=\{z_1,z_2\}$.
 
 $$
 \tilde R = \begin{bmatrix} 0.3 & 0.8 & 0.5 \\ 0.7 & 0.2 & 0.9 \end{bmatrix} \qquad
@@ -287,7 +287,7 @@ $$
 Compute $\tilde T = \tilde R \circ \tilde S$ via max-min.
 
 **Compute** $\mu_{\tilde T}(x_1, z_1)$:
-$$\max\{\min(0.3,0.6),\,\min(0.8,0.3),\,\min(0.5,0.5)\} = \max\{0.3,\,0.3,\,0.5\} = 0.5$$
+$$\max\{\min(0.3,0.6), \min(0.8,0.3), \min(0.5,0.5)\} = \max\{0.3, 0.3, 0.5\} = 0.5$$
 
 **$\mu_{\tilde T}(x_1, z_2)$:** $\max\{\min(0.3,0.4),\min(0.8,0.7),\min(0.5,0.8)\}=\max\{0.3,0.7,0.5\}=0.7$
 
@@ -336,27 +336,27 @@ A fuzzy set $\tilde A$ is convex **iff** every α-cut $A_\alpha$ is a convex (in
 
 ### Triangular
 $$
-\mu(x;\,a,b,c) = \max\!\left(\min\!\left(\frac{x-a}{b-a},\,\frac{c-x}{c-b}\right),\,0\right)
+\mu(x; a,b,c) = \max\left(\min\left(\frac{x-a}{b-a}, \frac{c-x}{c-b}\right), 0\right)
 $$
 
 ### Trapezoidal
 $$
-\mu(x;\,a,b,c,d) = \max\!\left(\min\!\left(\frac{x-a}{b-a},\,1,\,\frac{d-x}{d-c}\right),\,0\right)
+\mu(x; a,b,c,d) = \max\left(\min\left(\frac{x-a}{b-a}, 1, \frac{d-x}{d-c}\right), 0\right)
 $$
 
 ### Gaussian
 $$
-\mu(x;\,c,\sigma) = \exp\!\left(-\frac{(x-c)^2}{2\sigma^2}\right)
+\mu(x; c,\sigma) = \exp\left(-\frac{(x-c)^2}{2\sigma^2}\right)
 $$
 
 ### Generalized Bell
 $$
-\mu(x;\,a,b,c) = \frac{1}{1+\left|\dfrac{x-c}{a}\right|^{2b}}
+\mu(x; a,b,c) = \frac{1}{1+\left|\dfrac{x-c}{a}\right|^{2b}}
 $$
 
 ### Sigmoidal (S-shaped / Z-shaped pair)
 $$
-S(x;\,a,c) = \frac{1}{1+e^{-a(x-c)}},\qquad Z(x;\,a,c)=1-S(x;a,c)
+S(x; a,c) = \frac{1}{1+e^{-a(x-c)}},\qquad Z(x; a,c)=1-S(x;a,c)
 $$
 
 ### Π (Pi) MF
@@ -376,7 +376,7 @@ Most common in real-time controllers — cheap, exact.
 
 ### B. Gaussian fuzzification
 $$
-\mu_{\tilde A}(x) = \exp\!\left(-\frac{(x-x_0)^2}{2\sigma^2}\right)
+\mu_{\tilde A}(x) = \exp\left(-\frac{(x-x_0)^2}{2\sigma^2}\right)
 $$
 Smooth; accounts for measurement noise of std-dev $\sigma$.
 
@@ -430,7 +430,7 @@ $$
 4. **Complement (general):** $(\bar{\tilde A})_\lambda \ne \overline{A_\lambda}$ (warning!).
 5. **Decomposition (Representation) Theorem:**
 $$
-\tilde A \;=\; \bigcup_{\lambda \in (0,1]} \lambda \cdot A_\lambda
+\tilde A  =  \bigcup_{\lambda \in (0,1]} \lambda \cdot A_\lambda
 $$
 where $\lambda \cdot A_\lambda$ has MF equal to $\lambda$ on $A_\lambda$ and 0 elsewhere.
 
@@ -471,21 +471,21 @@ $$
 
 ### A. Centroid / Center of Gravity (COG / COA)
 $$
-z^* \;=\; \frac{\displaystyle\int z\,\mu_{\tilde C}(z)\,dz}{\displaystyle\int \mu_{\tilde C}(z)\,dz}
-\qquad\text{discrete: }\;
-z^* = \frac{\sum_i z_i\,\mu_{\tilde C}(z_i)}{\sum_i \mu_{\tilde C}(z_i)}
+z^*  =  \frac{\displaystyle\int z \mu_{\tilde C}(z) dz}{\displaystyle\int \mu_{\tilde C}(z) dz}
+\qquad\text{discrete: } 
+z^* = \frac{\sum_i z_i \mu_{\tilde C}(z_i)}{\sum_i \mu_{\tilde C}(z_i)}
 $$
 *Most popular*; balanced.
 
 ### B. Bisector (BOA)
 $z^*$ such that the area is split equally:
 $$
-\int_{z_{\min}}^{z^*}\mu_{\tilde C}(z)\,dz \;=\; \int_{z^*}^{z_{\max}}\mu_{\tilde C}(z)\,dz
+\int_{z_{\min}}^{z^*}\mu_{\tilde C}(z) dz  =  \int_{z^*}^{z_{\max}}\mu_{\tilde C}(z) dz
 $$
 
 ### C. Mean of Maxima (MOM)
 $$
-z^* \;=\; \frac{\sum_{z\in G} z}{|G|},\qquad G=\{z : \mu_{\tilde C}(z)=\text{height}(\tilde C)\}
+z^*  =  \frac{\sum_{z\in G} z}{|G|},\qquad G=\{z : \mu_{\tilde C}(z)=\text{height}(\tilde C)\}
 $$
 
 ### D. Smallest / Largest of Maxima (SOM / LOM)
@@ -493,14 +493,14 @@ $z^*=\min G$ or $\max G$ respectively.
 
 ### E. Weighted Average (used in Sugeno)
 $$
-z^* \;=\; \frac{\sum_i w_i\,\bar z_i}{\sum_i w_i}
+z^*  =  \frac{\sum_i w_i \bar z_i}{\sum_i w_i}
 $$
 where $\bar z_i$ is the peak of the $i$-th output MF and $w_i$ its firing strength.
 
 ### F. Center of Sums (COS)
 Faster than centroid; sums areas without union:
 $$
-z^* \;=\; \frac{\sum_z z\,\sum_i \mu_{\tilde C_i}(z)}{\sum_z \sum_i \mu_{\tilde C_i}(z)}
+z^*  =  \frac{\sum_z z \sum_i \mu_{\tilde C_i}(z)}{\sum_z \sum_i \mu_{\tilde C_i}(z)}
 $$
 
 ### Comparison
@@ -517,7 +517,7 @@ $$
 
 ## ✏️ 5.4 Solved Problem — Defuzzification
 
-Output fuzzy set $\tilde C$ on $Z=\{0,1,2,3,4,5,6\}$ with MF $\mu = (0,\,0.3,\,0.6,\,1.0,\,1.0,\,0.5,\,0.2)$.
+Output fuzzy set $\tilde C$ on $Z=\{0,1,2,3,4,5,6\}$ with MF $\mu = (0, 0.3, 0.6, 1.0, 1.0, 0.5, 0.2)$.
 
 ### (a) Centroid
 $$
@@ -555,9 +555,9 @@ $0, 0.3, 0.9, 1.9, 2.9, 3.4, 3.6$ → crosses 1.8 between $z=2$ ($0.9$) and $z=3
 
 ### Classical Inference Rules
 
-1. **Modus Ponens (MP):** $\dfrac{p,\;p\to q}{q}$
-2. **Modus Tollens (MT):** $\dfrac{\neg q,\;p\to q}{\neg p}$
-3. **Hypothetical syllogism:** $\dfrac{p\to q,\;q\to r}{p\to r}$
+1. **Modus Ponens (MP):** $\dfrac{p, p\to q}{q}$
+2. **Modus Tollens (MT):** $\dfrac{\neg q, p\to q}{\neg p}$
+3. **Hypothetical syllogism:** $\dfrac{p\to q, q\to r}{p\to r}$
 
 ---
 
@@ -589,7 +589,7 @@ Reasoning where premises, rules, and conclusions involve fuzzy concepts.
 Computed via the **compositional rule of inference (CRI)** by Zadeh:
 
 $$
-\tilde B' \;=\; \tilde A' \circ \tilde R(\tilde A,\tilde B)
+\tilde B'  =  \tilde A' \circ \tilde R(\tilde A,\tilde B)
 $$
 
 where $\tilde R$ is the fuzzy implication relation.
@@ -602,12 +602,12 @@ Different definitions for $\mu_{\tilde R}(x,y) = \mathrm{Imp}(\mu_{\tilde A}(x),
 
 | Name | Formula |
 |---|---|
-| **Mamdani (Minimum)** | $\min(\mu_{\tilde A}(x),\,\mu_{\tilde B}(y))$ |
+| **Mamdani (Minimum)** | $\min(\mu_{\tilde A}(x), \mu_{\tilde B}(y))$ |
 | **Larsen (Product)** | $\mu_{\tilde A}(x)\cdot\mu_{\tilde B}(y)$ |
-| **Zadeh** | $\max(\min(\mu_{\tilde A},\mu_{\tilde B}),\,1-\mu_{\tilde A})$ |
-| **Łukasiewicz** | $\min(1,\,1-\mu_{\tilde A}+\mu_{\tilde B})$ |
+| **Zadeh** | $\max(\min(\mu_{\tilde A},\mu_{\tilde B}), 1-\mu_{\tilde A})$ |
+| **Łukasiewicz** | $\min(1, 1-\mu_{\tilde A}+\mu_{\tilde B})$ |
 | **Gödel** | $1$ if $\mu_{\tilde A}\le\mu_{\tilde B}$ else $\mu_{\tilde B}$ |
-| **Kleene-Dienes** | $\max(1-\mu_{\tilde A},\,\mu_{\tilde B})$ |
+| **Kleene-Dienes** | $\max(1-\mu_{\tilde A}, \mu_{\tilde B})$ |
 | **Goguen** | $1$ if $\mu_{\tilde A}\le\mu_{\tilde B}$ else $\mu_{\tilde B}/\mu_{\tilde A}$ |
 
 > **Mamdani** and **Larsen** are popular in **engineering** controllers (not classical logic implications, but work well in practice).
@@ -629,9 +629,9 @@ $$
 **Step 2 — Fact:** $\tilde A' = \tfrac{0.5}{x_1}+\tfrac{0.8}{x_2}$.
 
 **Step 3 — Inference (max-min):**
-$$\mu_{\tilde B'}(y_1) = \max(\min(0.5,0.4),\,\min(0.8,0.4)) = \max(0.4,0.4) = 0.4$$
-$$\mu_{\tilde B'}(y_2) = \max(\min(0.5,0.6),\,\min(0.8,0.7)) = \max(0.5,0.7) = 0.7$$
-$$\mu_{\tilde B'}(y_3) = \max(\min(0.5,0.6),\,\min(0.8,0.9)) = \max(0.5,0.8) = 0.8$$
+$$\mu_{\tilde B'}(y_1) = \max(\min(0.5,0.4), \min(0.8,0.4)) = \max(0.4,0.4) = 0.4$$
+$$\mu_{\tilde B'}(y_2) = \max(\min(0.5,0.6), \min(0.8,0.7)) = \max(0.5,0.7) = 0.7$$
+$$\mu_{\tilde B'}(y_3) = \max(\min(0.5,0.6), \min(0.8,0.9)) = \max(0.5,0.8) = 0.8$$
 
 **Conclusion:** $\tilde B' = \tfrac{0.4}{y_1}+\tfrac{0.7}{y_2}+\tfrac{0.8}{y_3}$.
 
@@ -683,7 +683,7 @@ Multiple rules form a **rule base** $\{R_i\}_{i=1}^{N}$.
 ### Aggregation of Rules
 Once each rule fires to produce $\tilde B_i'$, all rule outputs are **combined**:
 $$
-\tilde B' \;=\; \bigcup_{i=1}^N \tilde B_i'
+\tilde B'  =  \bigcup_{i=1}^N \tilde B_i'
 $$
 Typical aggregation operators:
 
@@ -741,7 +741,7 @@ $$\text{IF } x_1 \text{ is } \tilde A_1 \text{ AND } x_2 \text{ is } \tilde A_2 
 
 ### Crisp output (weighted average)
 $$
-y^* \;=\; \frac{\sum_{i=1}^N w_i \cdot f_i(\mathbf{x})}{\sum_{i=1}^N w_i}
+y^*  =  \frac{\sum_{i=1}^N w_i \cdot f_i(\mathbf{x})}{\sum_{i=1}^N w_i}
 $$
 
 ### Pros & Cons
@@ -886,11 +886,11 @@ $S=\{\text{fever, cough, fatigue}\}$, $D=\{\text{flu, cold}\}$.
 
 $$
 \tilde R = \begin{bmatrix} 0.9 & 0.4 \\ 0.6 & 0.8 \\ 0.7 & 0.3\end{bmatrix},\quad
-\tilde P = (0.8,\,0.5,\,0.6)
+\tilde P = (0.8, 0.5, 0.6)
 $$
 
-$\mu_{\tilde D}(\text{flu}) = \max(\min(0.8,0.9),\,\min(0.5,0.6),\,\min(0.6,0.7)) = \max(0.8,0.5,0.6) = \mathbf{0.8}$
-$\mu_{\tilde D}(\text{cold}) = \max(\min(0.8,0.4),\,\min(0.5,0.8),\,\min(0.6,0.3)) = \max(0.4,0.5,0.3) = \mathbf{0.5}$
+$\mu_{\tilde D}(\text{flu}) = \max(\min(0.8,0.9), \min(0.5,0.6), \min(0.6,0.7)) = \max(0.8,0.5,0.6) = \mathbf{0.8}$
+$\mu_{\tilde D}(\text{cold}) = \max(\min(0.8,0.4), \min(0.5,0.8), \min(0.6,0.3)) = \max(0.4,0.5,0.3) = \mathbf{0.5}$
 
 ⇒ Flu is the more likely diagnosis.
 

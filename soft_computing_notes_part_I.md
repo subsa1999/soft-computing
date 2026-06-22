@@ -77,14 +77,14 @@ These methods are **complementary** rather than competing — they are often com
 A **soft-computing system** can be viewed as a mapping:
 
 $$
-f : X \subseteq \mathbb{R}^n \;\longrightarrow\; Y \subseteq \mathbb{R}^m
+f : X \subseteq \mathbb{R}^n  \longrightarrow  Y \subseteq \mathbb{R}^m
 $$
 
 approximated by a parameterized family $\hat{f}(\mathbf{x};\boldsymbol{\theta})$ where the parameter vector $\boldsymbol{\theta}$ is **learned** or **evolved** to minimize an error functional:
 
 $$
-\boldsymbol{\theta}^{*} \;=\; \arg\min_{\boldsymbol{\theta}} \; E(\boldsymbol{\theta})
-\;=\; \arg\min_{\boldsymbol{\theta}} \; \frac{1}{N}\sum_{i=1}^{N} L\bigl(y_i,\hat{f}(\mathbf{x}_i;\boldsymbol{\theta})\bigr)
+\boldsymbol{\theta}^{*}  =  \arg\min_{\boldsymbol{\theta}}   E(\boldsymbol{\theta})
+ =  \arg\min_{\boldsymbol{\theta}}   \frac{1}{N}\sum_{i=1}^{N} L\bigl(y_i,\hat{f}(\mathbf{x}_i;\boldsymbol{\theta})\bigr)
 $$
 
 where $L(\cdot,\cdot)$ is a loss function.
@@ -127,20 +127,20 @@ Real-world concepts (*"tall man"*, *"warm water"*, *"fast car"*) cannot be model
 A fuzzy set $\tilde{A}$ over a universe of discourse $X$ is defined by its **membership function**:
 
 $$
-\mu_{\tilde A} : X \;\longrightarrow\; [0,1]
+\mu_{\tilde A} : X  \longrightarrow  [0,1]
 $$
 
 **Discrete representation:**
 
 $$
-\tilde{A} \;=\; \sum_{x_i \in X} \frac{\mu_{\tilde A}(x_i)}{x_i}
+\tilde{A}  =  \sum_{x_i \in X} \frac{\mu_{\tilde A}(x_i)}{x_i}
 \quad\text{(Zadeh's notation; '+' and '/' are NOT arithmetic)}
 $$
 
 **Continuous representation:**
 
 $$
-\tilde{A} \;=\; \int_X \frac{\mu_{\tilde A}(x)}{x}
+\tilde{A}  =  \int_X \frac{\mu_{\tilde A}(x)}{x}
 $$
 
 ### Support, Core, Height, $\alpha$-Cut
@@ -161,31 +161,31 @@ $$
 ### Triangular
 
 $$
-\mu(x;\,a,b,c) \;=\; \max\!\left(\min\!\left(\frac{x-a}{b-a},\,\frac{c-x}{c-b}\right),\,0\right)
+\mu(x; a,b,c)  =  \max\left(\min\left(\frac{x-a}{b-a}, \frac{c-x}{c-b}\right), 0\right)
 $$
 
 ### Trapezoidal
 
 $$
-\mu(x;\,a,b,c,d) \;=\; \max\!\left(\min\!\left(\frac{x-a}{b-a},\,1,\,\frac{d-x}{d-c}\right),\,0\right)
+\mu(x; a,b,c,d)  =  \max\left(\min\left(\frac{x-a}{b-a}, 1, \frac{d-x}{d-c}\right), 0\right)
 $$
 
 ### Gaussian
 
 $$
-\mu(x;\,c,\sigma) \;=\; \exp\!\left(-\frac{(x-c)^2}{2\sigma^2}\right)
+\mu(x; c,\sigma)  =  \exp\left(-\frac{(x-c)^2}{2\sigma^2}\right)
 $$
 
 ### Sigmoidal
 
 $$
-\mu(x;\,a,c) \;=\; \frac{1}{1+e^{-a(x-c)}}
+\mu(x; a,c)  =  \frac{1}{1+e^{-a(x-c)}}
 $$
 
 ### Bell-shaped (Generalized)
 
 $$
-\mu(x;\,a,b,c) \;=\; \frac{1}{1+\left|\dfrac{x-c}{a}\right|^{2b}}
+\mu(x; a,b,c)  =  \frac{1}{1+\left|\dfrac{x-c}{a}\right|^{2b}}
 $$
 
 ---
@@ -196,11 +196,11 @@ Let $\tilde A, \tilde B$ be fuzzy sets over $X$.
 
 | Operation | Definition (Zadeh's standard) |
 |---|---|
-| **Union** | $\mu_{\tilde A \cup \tilde B}(x) = \max(\mu_{\tilde A}(x),\,\mu_{\tilde B}(x))$ |
-| **Intersection** | $\mu_{\tilde A \cap \tilde B}(x) = \min(\mu_{\tilde A}(x),\,\mu_{\tilde B}(x))$ |
+| **Union** | $\mu_{\tilde A \cup \tilde B}(x) = \max(\mu_{\tilde A}(x), \mu_{\tilde B}(x))$ |
+| **Intersection** | $\mu_{\tilde A \cap \tilde B}(x) = \min(\mu_{\tilde A}(x), \mu_{\tilde B}(x))$ |
 | **Complement** | $\mu_{\bar{\tilde A}}(x) = 1 - \mu_{\tilde A}(x)$ |
-| **Equality** | $\mu_{\tilde A}(x) = \mu_{\tilde B}(x) \;\forall x$ |
-| **Containment** | $\tilde A \subseteq \tilde B \iff \mu_{\tilde A}(x) \le \mu_{\tilde B}(x) \;\forall x$ |
+| **Equality** | $\mu_{\tilde A}(x) = \mu_{\tilde B}(x)  \forall x$ |
+| **Containment** | $\tilde A \subseteq \tilde B \iff \mu_{\tilde A}(x) \le \mu_{\tilde B}(x)  \forall x$ |
 | **Product** | $\mu_{\tilde A \cdot \tilde B}(x) = \mu_{\tilde A}(x)\cdot\mu_{\tilde B}(x)$ |
 | **Algebraic sum** | $\mu_{\tilde A + \tilde B}(x) = \mu_{\tilde A}(x)+\mu_{\tilde B}(x)-\mu_{\tilde A}(x)\mu_{\tilde B}(x)$ |
 | **Bounded sum** | $\mu(x)=\min(1,\mu_{\tilde A}(x)+\mu_{\tilde B}(x))$ |
@@ -221,20 +221,20 @@ For fuzzy sets, **most** of the classical set-theoretic laws hold (with $\max/\m
 | Associativity | $(\tilde A \cup \tilde B)\cup \tilde C = \tilde A \cup(\tilde B \cup \tilde C)$ |
 | Distributivity | $\tilde A \cap (\tilde B \cup \tilde C) = (\tilde A \cap \tilde B)\cup(\tilde A \cap \tilde C)$ |
 | Idempotency | $\tilde A \cup \tilde A = \tilde A$ |
-| Identity | $\tilde A \cup \varnothing = \tilde A,\;\tilde A \cap X = \tilde A$ |
+| Identity | $\tilde A \cup \varnothing = \tilde A, \tilde A \cap X = \tilde A$ |
 | De Morgan's | $\overline{\tilde A \cup \tilde B} = \bar{\tilde A}\cap \bar{\tilde B}$ |
 | Involution | $\overline{\overline{\tilde A}} = \tilde A$ |
 
 > ⚠️ **Important exception:** The **Law of Excluded Middle** and **Law of Contradiction** **DO NOT** hold for fuzzy sets:
 >
-> $$\tilde A \cup \bar{\tilde A} \;\ne\; X, \qquad \tilde A \cap \bar{\tilde A} \;\ne\; \varnothing$$
+> $$\tilde A \cup \bar{\tilde A}  \ne  X, \qquad \tilde A \cap \bar{\tilde A}  \ne  \varnothing$$
 
 ### 📐 Decomposition (Representation) Theorem
 
 Any fuzzy set $\tilde A$ can be represented as the union of its $\alpha$-cuts:
 
 $$
-\tilde A \;=\; \bigcup_{\alpha \in (0,1]} \alpha \cdot A_\alpha
+\tilde A  =  \bigcup_{\alpha \in (0,1]} \alpha \cdot A_\alpha
 \quad\text{where}\quad
 \mu_{\alpha A_\alpha}(x) =
 \begin{cases} \alpha & x \in A_\alpha \\ 0 & \text{otherwise}\end{cases}
@@ -245,7 +245,7 @@ $$
 If $f:X \to Y$ and $\tilde A$ is a fuzzy set on $X$, then the fuzzy set $\tilde B = f(\tilde A)$ on $Y$ is:
 
 $$
-\mu_{\tilde B}(y) \;=\; \sup_{x:\,y = f(x)} \mu_{\tilde A}(x)
+\mu_{\tilde B}(y)  =  \sup_{x: y = f(x)} \mu_{\tilde A}(x)
 $$
 
 ---
@@ -264,7 +264,7 @@ $$
 \tilde B = \frac{0.6}{1}+\frac{0.4}{2}+\frac{0.7}{3}+\frac{0.5}{4}+\frac{0.9}{5}
 $$
 
-Find $\tilde A \cup \tilde B,\; \tilde A \cap \tilde B,\; \bar{\tilde A}$.
+Find $\tilde A \cup \tilde B,  \tilde A \cap \tilde B,  \bar{\tilde A}$.
 
 **Solution:**
 
@@ -352,7 +352,7 @@ A **Fuzzy Inference System (FIS)** maps crisp inputs to crisp outputs via fuzzy 
 
 | Method | Formula |
 |---|---|
-| **Centroid (COG)** | $x^* = \dfrac{\int x\,\mu(x)\,dx}{\int \mu(x)\,dx}$ |
+| **Centroid (COG)** | $x^* = \dfrac{\int x \mu(x) dx}{\int \mu(x) dx}$ |
 | **Bisector** | $x^*$ such that $\int_{a}^{x^*}\mu(x)dx = \int_{x^*}^{b}\mu(x)dx$ |
 | **Mean of Maxima (MOM)** | Average $x$ where $\mu(x)$ peaks |
 | **Smallest of Max (SOM)** | Smallest $x$ where $\mu$ is max |
@@ -444,13 +444,13 @@ The earliest mathematical neuron model:
 **Net input:**
 
 $$
-\text{net} \;=\; \sum_{i=1}^{n} w_i x_i \;-\; \theta
+\text{net}  =  \sum_{i=1}^{n} w_i x_i  -  \theta
 $$
 
 **Output (binary step):**
 
 $$
-y \;=\; f(\text{net}) \;=\;
+y  =  f(\text{net})  = 
 \begin{cases}
 1, & \text{net} \ge 0 \\
 0, & \text{net} < 0
@@ -471,10 +471,10 @@ where $\theta$ is the **threshold** (bias).
 | **Sigmoid (logistic)** | $f(x) = \dfrac{1}{1+e^{-x}}$ | $(0,1)$ |
 | **Tanh** | $f(x) = \dfrac{e^x - e^{-x}}{e^x + e^{-x}}$ | $(-1,1)$ |
 | **ReLU** | $f(x) = \max(0,x)$ | $[0,\infty)$ |
-| **Leaky ReLU** | $f(x) = \max(0.01x,\,x)$ | $\mathbb{R}$ |
+| **Leaky ReLU** | $f(x) = \max(0.01x, x)$ | $\mathbb{R}$ |
 | **Softmax** | $f_i(\mathbf{x}) = \dfrac{e^{x_i}}{\sum_j e^{x_j}}$ | $(0,1)$, sums to 1 |
 
-**Sigmoid derivative (useful for BP):** $f'(x) = f(x)\,(1-f(x))$.
+**Sigmoid derivative (useful for BP):** $f'(x) = f(x) (1-f(x))$.
 
 ---
 
@@ -501,12 +501,12 @@ where $\theta$ is the **threshold** (bias).
 
 | Rule | Update equation |
 |---|---|
-| **Hebbian** | $\Delta w_{ij} = \eta\,x_i\,y_j$ |
-| **Perceptron** | $\Delta w_i = \eta\,(t-y)\,x_i$ |
-| **Delta (Widrow–Hoff)** | $\Delta w_i = \eta\,(t-y)\,f'(\text{net})\,x_i$ |
-| **Competitive** | $\Delta w_{ij} = \eta\,(x_i - w_{ij})$ if neuron $j$ wins |
-| **Correlation** | $\Delta w_{ij} = \eta\,x_i\,t_j$ |
-| **Outstar (Grossberg)** | $\Delta w_{ij} = \eta\,(t_j - w_{ij})$ |
+| **Hebbian** | $\Delta w_{ij} = \eta x_i y_j$ |
+| **Perceptron** | $\Delta w_i = \eta (t-y) x_i$ |
+| **Delta (Widrow–Hoff)** | $\Delta w_i = \eta (t-y) f'(\text{net}) x_i$ |
+| **Competitive** | $\Delta w_{ij} = \eta (x_i - w_{ij})$ if neuron $j$ wins |
+| **Correlation** | $\Delta w_{ij} = \eta x_i t_j$ |
+| **Outstar (Grossberg)** | $\Delta w_{ij} = \eta (t_j - w_{ij})$ |
 
 Here $\eta$ is the **learning rate**, $t$ is target, $y$ is actual output.
 
@@ -662,7 +662,7 @@ return best individual in P(t)
 | **Single-point** | Pick locus $k$; swap suffixes after $k$ |
 | **Two-point** | Pick two loci; swap middle segment |
 | **Uniform** | For each gene, swap with probability 0.5 |
-| **Arithmetic** | $c = \alpha\,p_1 + (1-\alpha)\,p_2$ for real-valued |
+| **Arithmetic** | $c = \alpha p_1 + (1-\alpha) p_2$ for real-valued |
 
 ### Mutation
 
@@ -675,8 +675,8 @@ return best individual in P(t)
 
 ### Probabilities — typical values
 
-- Crossover: $p_c \in [0.6,\,0.95]$
-- Mutation: $p_m \in [0.001,\,0.05]$
+- Crossover: $p_c \in [0.6, 0.95]$
+- Mutation: $p_m \in [0.001, 0.05]$
 
 ---
 
@@ -693,8 +693,8 @@ Define:
 - $L$ = chromosome length, $p_c$ = crossover prob, $p_m$ = mutation prob
 
 $$
-m(H, t+1) \;\ge\; m(H, t)\cdot\frac{f(H)}{\bar f}
-\cdot\left[1 - p_c\,\frac{\delta(H)}{L-1}\right]
+m(H, t+1)  \ge  m(H, t)\cdot\frac{f(H)}{\bar f}
+\cdot\left[1 - p_c \frac{\delta(H)}{L-1}\right]
 \cdot\left[1 - p_m\right]^{o(H)}
 $$
 
@@ -784,7 +784,7 @@ Average fitness rose from **292.5 → 496.5**; best individual reached the **opt
 
 ## 📝 Fuzzy Sets
 - Membership $\mu \in [0,1]$.
-- $\cup = \max,\;\cap = \min,\;\bar{} = 1-\mu$.
+- $\cup = \max, \cap = \min, \bar{} = 1-\mu$.
 - $\alpha$-cut $= \{x : \mu(x) \ge \alpha\}$.
 - **Excluded middle FAILS** in fuzzy logic.
 - FIS: Fuzzify → Inference → Defuzzify (Mamdani / Sugeno).
@@ -803,7 +803,7 @@ Average fitness rose from **292.5 → 496.5**; best individual reached the **opt
 - Father: John Holland (1975).
 - Cycle: **Init → Eval → Select → Crossover → Mutate → Repeat**.
 - Operators: roulette/tournament selection, 1-pt/uniform crossover, bit-flip mutation.
-- $p_c \approx 0.7,\;p_m \approx 0.01$.
+- $p_c \approx 0.7, p_m \approx 0.01$.
 - **Schema theorem:** short, low-order, above-average schemata survive exponentially.
 
 ---

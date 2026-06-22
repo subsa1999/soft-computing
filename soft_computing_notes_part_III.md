@@ -134,13 +134,13 @@
 **Net input:**
 
 $$
-\mathrm{net} \;=\; \sum_{i=1}^{n} w_i\,x_i + b \;=\; \mathbf{w}^\top \mathbf{x} + b
+\mathrm{net}  =  \sum_{i=1}^{n} w_i x_i + b  =  \mathbf{w}^\top \mathbf{x} + b
 $$
 
 **Output:**
 
 $$
-y \;=\; f(\mathrm{net})
+y  =  f(\mathrm{net})
 $$
 
 Bias $b$ shifts activation; equivalent to adding a constant "1" input with weight $b$.
@@ -188,7 +188,7 @@ $w_1=w_2=1,\ \theta=1$ → $(0,0)\to 0$, others → 1. ✅
 
 General weight-update template:
 $$
-w_{ij}(t+1) \;=\; w_{ij}(t) + \Delta w_{ij}
+w_{ij}(t+1)  =  w_{ij}(t) + \Delta w_{ij}
 $$
 
 ---
@@ -199,17 +199,17 @@ $$
 *"Cells that fire together, wire together."*
 
 $$
-\Delta w_{ij} \;=\; \eta\,x_i\,y_j
+\Delta w_{ij}  =  \eta x_i y_j
 $$
 
 - Unsupervised. No bound → weights blow up unless normalized.
-- **Oja's rule** (stable variant): $\Delta w_{ij} = \eta\,y_j(x_i - y_j w_{ij})$.
+- **Oja's rule** (stable variant): $\Delta w_{ij} = \eta y_j(x_i - y_j w_{ij})$.
 
 ### B. Perceptron Rule (Rosenblatt, 1958)
 For binary classifier with target $t \in \{0,1\}$ or $\{-1,+1\}$:
 
 $$
-\Delta w_i \;=\; \eta\,(t-y)\,x_i,\qquad \Delta b = \eta(t-y)
+\Delta w_i  =  \eta (t-y) x_i,\qquad \Delta b = \eta(t-y)
 $$
 
 Only updates on misclassification.
@@ -218,7 +218,7 @@ Only updates on misclassification.
 Minimizes squared error $E=\tfrac12(t-y)^2$ for **linear** units:
 
 $$
-\Delta w_i \;=\; \eta\,(t-y)\,x_i
+\Delta w_i  =  \eta (t-y) x_i
 $$
 
 For non-linear $f$: include derivative — $\Delta w_i = \eta(t-y)f'(\mathrm{net})x_i$ (Generalized Delta).
@@ -227,7 +227,7 @@ For non-linear $f$: include derivative — $\Delta w_i = \eta(t-y)f'(\mathrm{net
 Only the neuron with largest activation updates:
 
 $$
-\Delta w_{ij} = \begin{cases} \eta\,(x_i - w_{ij}) & j = j^* \\ 0 & \text{otherwise} \end{cases}
+\Delta w_{ij} = \begin{cases} \eta (x_i - w_{ij}) & j = j^* \\ 0 & \text{otherwise} \end{cases}
 $$
 
 Used in SOM, LVQ, k-means clustering.
@@ -236,14 +236,14 @@ Used in SOM, LVQ, k-means clustering.
 Supervised variant of Hebbian using target:
 
 $$
-\Delta w_{ij} \;=\; \eta\,x_i\,t_j
+\Delta w_{ij}  =  \eta x_i t_j
 $$
 
 ### F. Outstar (Grossberg) Rule
 Moves weights toward target output:
 
 $$
-\Delta w_{ij} \;=\; \eta\,(t_j - w_{ij})
+\Delta w_{ij}  =  \eta (t_j - w_{ij})
 $$
 
 ### G. Boltzmann Learning (1985, Hinton & Sejnowski)
@@ -251,17 +251,17 @@ Stochastic, energy-based learning for **Boltzmann machines** (symmetric, recurre
 
 **Energy of state $\mathbf{s}$:**
 $$
-E(\mathbf{s}) \;=\; -\tfrac12 \sum_{i\ne j} w_{ij}\,s_i\,s_j - \sum_i \theta_i\,s_i
+E(\mathbf{s})  =  -\tfrac12 \sum_{i\ne j} w_{ij} s_i s_j - \sum_i \theta_i s_i
 $$
 
 **Boltzmann–Gibbs probability** of state:
 $$
-P(\mathbf{s}) \;=\; \frac{e^{-E(\mathbf{s})/T}}{Z},\qquad Z = \sum_{\mathbf{s}'} e^{-E(\mathbf{s}')/T}
+P(\mathbf{s})  =  \frac{e^{-E(\mathbf{s})/T}}{Z},\qquad Z = \sum_{\mathbf{s}'} e^{-E(\mathbf{s}')/T}
 $$
 
 **Learning rule** — minimize KL divergence between *clamped* (data) and *free-running* phases:
 $$
-\Delta w_{ij} \;=\; \frac{\eta}{T}\bigl(\langle s_i s_j\rangle_{\text{clamped}} - \langle s_i s_j\rangle_{\text{free}}\bigr)
+\Delta w_{ij}  =  \frac{\eta}{T}\bigl(\langle s_i s_j\rangle_{\text{clamped}} - \langle s_i s_j\rangle_{\text{free}}\bigr)
 $$
 
 - $T$ is *temperature* — annealed from high to low (simulated annealing).
@@ -309,7 +309,7 @@ repeat until no error:
 ### 📐 Perceptron Convergence Theorem (Novikoff, 1962)
 If training data is **linearly separable**, the perceptron rule converges in finite steps. Bound:
 $$
-\text{# updates} \;\le\; \left(\frac{R}{\gamma}\right)^{\!2}
+\text{# updates}  \le  \left(\frac{R}{\gamma}\right)^{2}
 $$
 where $R=\max\|\mathbf{x}\|$ and $\gamma$ = margin of best separator.
 
@@ -319,7 +319,7 @@ XOR is not linearly separable ⇒ single perceptron **cannot** solve it; need a 
 ### ✏️ Solved Problem — Train Perceptron for AND
 
 Inputs $(x_1,x_2)\in\{0,1\}^2$, target $t = x_1 \land x_2$. $\eta=1$.
-Initial: $w_1=0,\,w_2=0,\,b=0$.
+Initial: $w_1=0, w_2=0, b=0$.
 
 | Step | $(x_1,x_2)$ | $t$ | $y$ | $\Delta w_1,\Delta w_2,\Delta b$ | $w_1,w_2,b$ |
 |:-:|:-:|:-:|:-:|:-:|:-:|
@@ -345,8 +345,8 @@ One more epoch with no errors ⇒ **converged**: $w=(1,1),\ b=-1$. ✅
 
 ### Cost & Update
 $$
-E(\mathbf{w}) \;=\; \tfrac12 (t-\mathrm{net})^2,\qquad
-\Delta w_i \;=\; \eta\,(t-\mathrm{net})\,x_i
+E(\mathbf{w})  =  \tfrac12 (t-\mathrm{net})^2,\qquad
+\Delta w_i  =  \eta (t-\mathrm{net}) x_i
 $$
 
 ### Difference from Perceptron
@@ -363,9 +363,9 @@ Initial $w=(0.2,-0.1),\ b=0.0$. Sample $(x_1,x_2)=(1,1),\ t=1,\ \eta=0.3$.
 
 $\mathrm{net} = 0.2-0.1+0 = 0.1$; error $e = 1-0.1 = 0.9$.
 
-$\Delta w_1 = 0.3(0.9)(1) = 0.27,\;\Delta w_2 = 0.27,\;\Delta b = 0.27$.
+$\Delta w_1 = 0.3(0.9)(1) = 0.27, \Delta w_2 = 0.27, \Delta b = 0.27$.
 
-New weights: $w=(0.47,\,0.17),\;b=0.27$.
+New weights: $w=(0.47, 0.17), b=0.27$.
 
 ---
 
@@ -418,29 +418,29 @@ A feed-forward net with **one hidden layer** of a finite number of neurons, usin
 
 ### Forward Pass
 $$
-z^{\ell} \;=\; W^{\ell} a^{\ell-1} + b^{\ell},\qquad a^{\ell} = f(z^{\ell})
+z^{\ell}  =  W^{\ell} a^{\ell-1} + b^{\ell},\qquad a^{\ell} = f(z^{\ell})
 $$
 
 ### Backward Pass
 **Output layer error:**
 $$
-\delta^{L} \;=\; (a^{L} - t) \odot f'(z^{L})
+\delta^{L}  =  (a^{L} - t) \odot f'(z^{L})
 $$
 
 **Hidden layer error (backpropagation):**
 $$
-\delta^{\ell} \;=\; \bigl((W^{\ell+1})^{\top}\delta^{\ell+1}\bigr) \odot f'(z^{\ell})
+\delta^{\ell}  =  \bigl((W^{\ell+1})^{\top}\delta^{\ell+1}\bigr) \odot f'(z^{\ell})
 $$
 
 **Gradient w.r.t. weights & biases:**
 $$
-\frac{\partial E}{\partial W^{\ell}} \;=\; \delta^{\ell}\,(a^{\ell-1})^{\top},\qquad
-\frac{\partial E}{\partial b^{\ell}} \;=\; \delta^{\ell}
+\frac{\partial E}{\partial W^{\ell}}  =  \delta^{\ell} (a^{\ell-1})^{\top},\qquad
+\frac{\partial E}{\partial b^{\ell}}  =  \delta^{\ell}
 $$
 
 **Weight update (gradient descent):**
 $$
-W^{\ell} \;\leftarrow\; W^{\ell} - \eta\,\delta^{\ell}\,(a^{\ell-1})^{\top}
+W^{\ell}  \leftarrow  W^{\ell} - \eta \delta^{\ell} (a^{\ell-1})^{\top}
 $$
 
 ### Algorithm (Pseudo-code)
@@ -464,7 +464,7 @@ for epoch = 1..E:
 
 ### Variants
 - **Batch / Mini-batch / Stochastic** gradient descent
-- **Momentum:** $v \leftarrow \mu v - \eta\nabla E,\; W \leftarrow W + v$
+- **Momentum:** $v \leftarrow \mu v - \eta\nabla E,  W \leftarrow W + v$
 - **Adam, RMSProp, AdaGrad** — adaptive learning rates
 - **Regularization:** L2 weight decay, dropout, early stopping
 
@@ -488,7 +488,7 @@ $$
 W^1 = \begin{bmatrix} 0.15 & 0.20 \\ 0.25 & 0.30 \end{bmatrix},\ b^1=\begin{bmatrix}0.35\\0.35\end{bmatrix},\ W^2 = \begin{bmatrix} 0.40 & 0.45 \end{bmatrix},\ b^2 = 0.60
 $$
 
-Input $x=(0.05,\,0.10)$, target $t=0.01$, $\eta=0.5$.
+Input $x=(0.05, 0.10)$, target $t=0.01$, $\eta=0.5$.
 
 ### Forward
 $z^1_1 = 0.15(0.05)+0.20(0.10)+0.35 = 0.3775 \Rightarrow a^1_1 = \sigma(0.3775)=0.5933$
@@ -505,11 +505,11 @@ $\delta^1_1 = \delta^2 \cdot W^2_{1} \cdot a^1_1(1-a^1_1) = 0.1385(0.40)(0.5933)
 $\delta^1_2 = 0.1385(0.45)(0.5969)(0.4031) = 0.01500$
 
 ### Update (one step)
-$\Delta W^2_{11}= -\eta\,\delta^2\,a^1_1 = -0.5(0.1385)(0.5933) = -0.0411$
+$\Delta W^2_{11}= -\eta \delta^2 a^1_1 = -0.5(0.1385)(0.5933) = -0.0411$
 $W^2_{11} \leftarrow 0.40 - 0.0411 = \mathbf{0.3589}$
 $W^2_{12} \leftarrow 0.45 - 0.5(0.1385)(0.5969) = \mathbf{0.4087}$
 
-$\Delta W^1_{11} = -\eta\,\delta^1_1\,x_1 = -0.5(0.01337)(0.05) = -0.000334$
+$\Delta W^1_{11} = -\eta \delta^1_1 x_1 = -0.5(0.01337)(0.05) = -0.000334$
 $W^1_{11} \leftarrow 0.15 - 0.000334 \approx \mathbf{0.14967}$
 
 Repeating drives $E \to 0$.
@@ -561,8 +561,8 @@ for t = 1..T:
 
 ### Decay Schedules
 $$
-\eta(t) = \eta_0\,\exp(-t/\tau_\eta),\qquad
-\sigma(t) = \sigma_0\,\exp(-t/\tau_\sigma)
+\eta(t) = \eta_0 \exp(-t/\tau_\eta),\qquad
+\sigma(t) = \sigma_0 \exp(-t/\tau_\sigma)
 $$
 
 ### Properties
@@ -582,14 +582,14 @@ Weights grow without bound — causes instability.
 
 ### Oja's Rule (1982) — Normalized Hebbian
 $$
-\Delta w_{ij} \;=\; \eta\,y_j\,(x_i - y_j\,w_{ij})
+\Delta w_{ij}  =  \eta y_j (x_i - y_j w_{ij})
 $$
 Drives weight vector to the **principal eigenvector** of the input covariance matrix → **PCA**.
 
 ### Sanger's Rule (Generalised Hebbian Algorithm)
 Extracts the **first $k$ principal components**:
 $$
-\Delta w_{ij} \;=\; \eta\,y_j\!\left(x_i - \sum_{k\le j} y_k\,w_{ik}\right)
+\Delta w_{ij}  =  \eta y_j\left(x_i - \sum_{k\le j} y_k w_{ik}\right)
 $$
 
 ---
@@ -618,23 +618,23 @@ A **single-layer, fully connected, recurrent** auto-associative memory.
 
 ### Update Rule
 $$
-s_i \;\leftarrow\; \mathrm{sgn}\!\left(\sum_{j\ne i} w_{ij}\,s_j - \theta_i\right)
+s_i  \leftarrow  \mathrm{sgn}\left(\sum_{j\ne i} w_{ij} s_j - \theta_i\right)
 $$
 
 ### Storage (Hebbian) — train on $P$ patterns $\xi^{\mu}$:
 $$
-w_{ij} \;=\; \frac{1}{N}\sum_{\mu=1}^{P} \xi^{\mu}_i\,\xi^{\mu}_j,\quad i\ne j
+w_{ij}  =  \frac{1}{N}\sum_{\mu=1}^{P} \xi^{\mu}_i \xi^{\mu}_j,\quad i\ne j
 $$
 
 ### 📐 Energy Function
 $$
-E \;=\; -\tfrac12 \sum_{i\ne j} w_{ij}\,s_i\,s_j + \sum_i \theta_i\,s_i
+E  =  -\tfrac12 \sum_{i\ne j} w_{ij} s_i s_j + \sum_i \theta_i s_i
 $$
 
 **Theorem (Hopfield):** With symmetric weights and asynchronous updates, $E$ is **non-increasing** at each step ⇒ the network converges to a local minimum (stable state) in **finite** time.
 
 ### Capacity
-- Hebbian storage capacity ≈ $0.138\,N$ patterns (for low error).
+- Hebbian storage capacity ≈ $0.138 N$ patterns (for low error).
 - More patterns ⇒ **spurious states** appear.
 
 ### Uses
@@ -643,7 +643,7 @@ $$
 
 ### ✏️ Solved Problem — Store 1 Pattern
 $N=4$, pattern $\xi=(+1,-1,+1,-1)$. Then
-$$w_{ij} = \tfrac{1}{4}\,\xi_i\,\xi_j \quad (i\ne j)$$
+$$w_{ij} = \tfrac{1}{4} \xi_i \xi_j \quad (i\ne j)$$
 $$W = \tfrac14\begin{bmatrix} 0 & -1 & 1 & -1\\ -1 & 0 & -1 & 1\\ 1 & -1 & 0 & -1\\ -1 & 1 & -1 & 0\end{bmatrix}$$
 
 Test with noisy input $s=(+1,+1,+1,-1)$ (bit 2 flipped). Update neuron 2:
@@ -701,10 +701,10 @@ $$O^2_i = w_i = \mu_{A_i}(x_1)\cdot\mu_{B_i}(x_2)$$
 $$O^3_i = \bar w_i = \frac{w_i}{\sum_k w_k}$$
 
 **Layer 4 — Adaptive (consequent params):**
-$$O^4_i = \bar w_i\,f_i = \bar w_i(p_i x_1 + q_i x_2 + r_i)$$
+$$O^4_i = \bar w_i f_i = \bar w_i(p_i x_1 + q_i x_2 + r_i)$$
 
 **Layer 5 — Fixed (sum):**
-$$y = \sum_i \bar w_i\,f_i = \frac{\sum_i w_i f_i}{\sum_i w_i}$$
+$$y = \sum_i \bar w_i f_i = \frac{\sum_i w_i f_i}{\sum_i w_i}$$
 
 ### Hybrid Learning
 - **Forward pass:** Fix antecedent params; estimate consequent params $(p_i,q_i,r_i)$ by **Least-Squares**.
@@ -779,7 +779,7 @@ $$
 
 1. Flatten each pattern → vector $\xi^\mu \in \{-1,+1\}^{25}$.
 2. Compute weights:
-$$w_{ij} = \tfrac{1}{25}\sum_{\mu=1}^{2} \xi^\mu_i\,\xi^\mu_j,\quad i\ne j$$
+$$w_{ij} = \tfrac{1}{25}\sum_{\mu=1}^{2} \xi^\mu_i \xi^\mu_j,\quad i\ne j$$
 3. Feed noisy "L" (some pixels flipped) → run asynchronous updates → converges to clean "L". ✅
 
 Capacity ≈ $0.138 \times 25 \approx 3$ patterns; suitable here.

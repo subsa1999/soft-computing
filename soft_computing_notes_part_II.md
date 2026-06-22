@@ -73,7 +73,9 @@ Let $A, B \subseteq X$.
 
 ### Cardinality (crisp)
 
-$$|A| = \sum_{x \in X} \chi_A(x)$$
+$$
+|A| = \sum_{x \in X} \chi_A(x)
+$$
 
 For a power set: $|2^X| = 2^{|X|}$.
 
@@ -156,11 +158,13 @@ $\mu_{\tilde A \cap \bar{\tilde A}}(x) = \min(0.4,0.6) = 0.4 \ne 0$.
 ## 🧮 2.4 Cardinality of a Fuzzy Set
 
 ### Scalar (sigma) cardinality
+
 $$
 |\tilde A|  =  \sum_{x \in X} \mu_{\tilde A}(x) \qquad\text{(discrete)}\qquad |\tilde A|  =  \int_X \mu_{\tilde A}(x) dx \qquad\text{(continuous)}
 $$
 
 ### Relative cardinality
+
 $$
 \|\tilde A\|  =  \frac{|\tilde A|}{|X|}
 $$
@@ -206,6 +210,7 @@ $\mu_{\tilde A \cup \bar{\tilde A}} = \max(0.3, 0.7) = 0.7 \ne 1$. ✅ Demonstra
 ## 📘 3.1 Crisp Relation Recap
 
 A crisp relation $R$ from $X$ to $Y$ is a subset of $X\times Y$:
+
 $$
 \chi_R(x,y) = \begin{cases} 1 & (x,y)\in R\\ 0 & \text{else}\end{cases}
 $$
@@ -241,11 +246,13 @@ Let $\tilde R, \tilde S$ be fuzzy relations on $X\times Y$.
 Given $\tilde R$ on $X\times Y$ and $\tilde S$ on $Y\times Z$, the composition $\tilde R \circ \tilde S$ on $X \times Z$:
 
 ### Max–Min Composition
+
 $$
 \mu_{\tilde R \circ \tilde S}(x,z)  =  \max_{y \in Y} \min\bigl(\mu_{\tilde R}(x,y), \mu_{\tilde S}(y,z)\bigr)
 $$
 
 ### Max–Product Composition
+
 $$
 \mu_{\tilde R \circ \tilde S}(x,z)  =  \max_{y \in Y} \bigl(\mu_{\tilde R}(x,y)\cdot\mu_{\tilde S}(y,z)\bigr)
 $$
@@ -287,7 +294,10 @@ $$
 Compute $\tilde T = \tilde R \circ \tilde S$ via max-min.
 
 **Compute** $\mu_{\tilde T}(x_1, z_1)$:
-$$\max\{\min(0.3,0.6), \min(0.8,0.3), \min(0.5,0.5)\} = \max\{0.3, 0.3, 0.5\} = 0.5$$
+
+$$
+\max\{\min(0.3,0.6), \min(0.8,0.3), \min(0.5,0.5)\} = \max\{0.3, 0.3, 0.5\} = 0.5
+$$
 
 **$\mu_{\tilde T}(x_1, z_2)$:** $\max\{\min(0.3,0.4),\min(0.8,0.7),\min(0.5,0.8)\}=\max\{0.3,0.7,0.5\}=0.7$
 
@@ -295,7 +305,9 @@ $$\max\{\min(0.3,0.6), \min(0.8,0.3), \min(0.5,0.5)\} = \max\{0.3, 0.3, 0.5\} = 
 
 **$\mu_{\tilde T}(x_2, z_2)$:** $\max\{\min(0.7,0.4),\min(0.2,0.7),\min(0.9,0.8)\}=\max\{0.4,0.2,0.8\}=0.8$
 
-$$\tilde T = \begin{bmatrix} 0.5 & 0.7 \\ 0.6 & 0.8 \end{bmatrix}$$
+$$
+\tilde T = \begin{bmatrix} 0.5 & 0.7 \\ 0.6 & 0.8 \end{bmatrix}
+$$
 
 ---
 
@@ -544,12 +556,14 @@ $$
 **Fuzzification** = converting a crisp value $x_0$ (or measurement) into a fuzzy set / membership grade.
 
 ### A. Singleton fuzzification
+
 $$
 \mu_{\tilde A}(x) = \begin{cases} 1 & x=x_0\\ 0 & \text{else}\end{cases}
 $$
 Most common in real-time controllers — cheap, exact.
 
 ### B. Gaussian fuzzification
+
 $$
 \mu_{\tilde A}(x) = \exp\left(-\frac{(x-x_0)^2}{2\sigma^2}\right)
 $$
@@ -604,6 +618,7 @@ $$
 3. **Intersection:** $(\tilde A \cap \tilde B)_\lambda = A_\lambda \cap B_\lambda$.
 4. **Complement (general):** $(\bar{\tilde A})_\lambda \ne \overline{A_\lambda}$ (warning!).
 5. **Decomposition (Representation) Theorem:**
+
 $$
 \tilde A  =  \bigcup_{\lambda \in (0,1]} \lambda \cdot A_\lambda
 $$
@@ -625,6 +640,7 @@ $\tilde A = \tfrac{0.2}{a}+\tfrac{0.5}{b}+\tfrac{0.8}{c}+\tfrac{1.0}{d}+\tfrac{0
 ## 📘 5.2 λ-Cuts for Fuzzy Relations
 
 If $\tilde R$ is a fuzzy relation on $X\times Y$:
+
 $$
 R_\lambda = \{(x,y) : \mu_{\tilde R}(x,y) \ge \lambda\}
 $$
@@ -632,6 +648,7 @@ $$
 Yields a crisp relation matrix with entries in $\{0,1\}$.
 
 ### ✏️ Example
+
 $$
 M_{\tilde R} = \begin{bmatrix} 0.2 & 0.7 \\ 0.9 & 0.4 \end{bmatrix}
 \xrightarrow{\lambda=0.5}
@@ -645,6 +662,7 @@ $$
 **Goal:** Convert output fuzzy set $\tilde C$ to a crisp value $z^*$.
 
 ### A. Centroid / Center of Gravity (COG / COA)
+
 $$
 z^*  =  \frac{\displaystyle\int z \mu_{\tilde C}(z) dz}{\displaystyle\int \mu_{\tilde C}(z) dz}
 \qquad\text{discrete: } 
@@ -654,11 +672,13 @@ $$
 
 ### B. Bisector (BOA)
 $z^*$ such that the area is split equally:
+
 $$
 \int_{z_{\min}}^{z^*}\mu_{\tilde C}(z) dz  =  \int_{z^*}^{z_{\max}}\mu_{\tilde C}(z) dz
 $$
 
 ### C. Mean of Maxima (MOM)
+
 $$
 z^*  =  \frac{\sum_{z\in G} z}{|G|},\qquad G=\{z : \mu_{\tilde C}(z)=\text{height}(\tilde C)\}
 $$
@@ -667,6 +687,7 @@ $$
 $z^*=\min G$ or $\max G$ respectively.
 
 ### E. Weighted Average (used in Sugeno)
+
 $$
 z^*  =  \frac{\sum_i w_i \bar z_i}{\sum_i w_i}
 $$
@@ -674,6 +695,7 @@ where $\bar z_i$ is the peak of the $i$-th output MF and $w_i$ its firing streng
 
 ### F. Center of Sums (COS)
 Faster than centroid; sums areas without union:
+
 $$
 z^*  =  \frac{\sum_z z \sum_i \mu_{\tilde C_i}(z)}{\sum_z \sum_i \mu_{\tilde C_i}(z)}
 $$
@@ -695,6 +717,7 @@ $$
 Output fuzzy set $\tilde C$ on $Z=\{0,1,2,3,4,5,6\}$ with MF $\mu = (0, 0.3, 0.6, 1.0, 1.0, 0.5, 0.2)$.
 
 ### (a) Centroid
+
 $$
 z^* = \frac{0(0)+1(0.3)+2(0.6)+3(1)+4(1)+5(0.5)+6(0.2)}{0+0.3+0.6+1+1+0.5+0.2}
 = \frac{0+0.3+1.2+3+4+2.5+1.2}{3.6} = \frac{12.2}{3.6} \approx \mathbf{3.39}
@@ -804,9 +827,18 @@ $$
 **Step 2 — Fact:** $\tilde A' = \tfrac{0.5}{x_1}+\tfrac{0.8}{x_2}$.
 
 **Step 3 — Inference (max-min):**
-$$\mu_{\tilde B'}(y_1) = \max(\min(0.5,0.4), \min(0.8,0.4)) = \max(0.4,0.4) = 0.4$$
-$$\mu_{\tilde B'}(y_2) = \max(\min(0.5,0.6), \min(0.8,0.7)) = \max(0.5,0.7) = 0.7$$
-$$\mu_{\tilde B'}(y_3) = \max(\min(0.5,0.6), \min(0.8,0.9)) = \max(0.5,0.8) = 0.8$$
+
+$$
+\mu_{\tilde B'}(y_1) = \max(\min(0.5,0.4), \min(0.8,0.4)) = \max(0.4,0.4) = 0.4
+$$
+
+$$
+\mu_{\tilde B'}(y_2) = \max(\min(0.5,0.6), \min(0.8,0.7)) = \max(0.5,0.7) = 0.7
+$$
+
+$$
+\mu_{\tilde B'}(y_3) = \max(\min(0.5,0.6), \min(0.8,0.9)) = \max(0.5,0.8) = 0.8
+$$
 
 **Conclusion:** $\tilde B' = \tfrac{0.4}{y_1}+\tfrac{0.7}{y_2}+\tfrac{0.8}{y_3}$.
 
@@ -847,7 +879,10 @@ Given fuzzy set $\tilde A$ with MF $\mu_{\tilde A}$, hedges produce new fuzzy se
 ## 📘 8.2 Fuzzy Rule Base
 
 A **fuzzy rule** has the form:
-$$\text{IF } x_1 \text{ is } \tilde A_1 \text{ AND } x_2 \text{ is } \tilde A_2 \text{ THEN } y \text{ is } \tilde B$$
+
+$$
+\text{IF } x_1 \text{ is } \tilde A_1 \text{ AND } x_2 \text{ is } \tilde A_2 \text{ THEN } y \text{ is } \tilde B
+$$
 
 Multiple rules form a **rule base** $\{R_i\}_{i=1}^{N}$.
 
@@ -857,6 +892,7 @@ Multiple rules form a **rule base** $\{R_i\}_{i=1}^{N}$.
 
 ### Aggregation of Rules
 Once each rule fires to produce $\tilde B_i'$, all rule outputs are **combined**:
+
 $$
 \tilde B'  =  \bigcup_{i=1}^N \tilde B_i'
 $$
@@ -909,12 +945,16 @@ Typical aggregation operators:
 
 - **Antecedent:** fuzzy
 - **Consequent:** crisp **function** of inputs:
-$$\text{IF } x_1 \text{ is } \tilde A_1 \text{ AND } x_2 \text{ is } \tilde A_2 \text{ THEN } y_i = f_i(x_1,x_2)$$
+
+$$
+\text{IF } x_1 \text{ is } \tilde A_1 \text{ AND } x_2 \text{ is } \tilde A_2 \text{ THEN } y_i = f_i(x_1,x_2)
+$$
 
 - **Zero-order Sugeno:** $f_i = c_i$ (constant)
 - **First-order Sugeno:** $f_i = a_{i0}+a_{i1}x_1+a_{i2}x_2$
 
 ### Crisp output (weighted average)
+
 $$
 y^*  =  \frac{\sum_{i=1}^N w_i \cdot f_i(\mathbf{x})}{\sum_{i=1}^N w_i}
 $$

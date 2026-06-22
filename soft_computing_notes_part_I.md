@@ -227,7 +227,7 @@ For fuzzy sets, **most** of the classical set-theoretic laws hold (with $\max/\m
 
 > ⚠️ **Important exception:** The **Law of Excluded Middle** and **Law of Contradiction** **DO NOT** hold for fuzzy sets:
 >
-> $$\tilde A \cup \bar{\tilde A}  \ne  X, \qquad \tilde A \cap \bar{\tilde A}  \ne  \varnothing$$
+> $\tilde A \cup \bar{\tilde A}  \ne  X, \qquad \tilde A \cap \bar{\tilde A}  \ne  \varnothing$
 
 ### 📐 Decomposition (Representation) Theorem
 
@@ -537,19 +537,31 @@ Initial weights $w_1=0.2, w_2=-0.1, b=0.0$. Input $(x_1,x_2)=(1,1)$, target $t=1
 
 **Step 1: net input**
 
-$$\text{net} = (1)(0.2)+(1)(-0.1)+0 = 0.1 \ge 0 \Rightarrow y = 1$$
+$$
+\text{net} = (1)(0.2)+(1)(-0.1)+0 = 0.1 \ge 0 \Rightarrow y = 1
+$$
 
 Since $y = t$, weights unchanged.
 
 Now feed $(1,0)$, target $t=0$:
 
-$$\text{net} = 0.2 + 0 + 0 = 0.2 \ge 0 \Rightarrow y = 1$$
+$$
+\text{net} = 0.2 + 0 + 0 = 0.2 \ge 0 \Rightarrow y = 1
+$$
 
 Error $e = t - y = -1$. Update:
 
-$$w_1 \leftarrow 0.2 + (0.5)(-1)(1) = -0.3$$
-$$w_2 \leftarrow -0.1 + (0.5)(-1)(0) = -0.1$$
-$$b   \leftarrow 0   + (0.5)(-1)     = -0.5$$
+$$
+w_1 \leftarrow 0.2 + (0.5)(-1)(1) = -0.3
+$$
+
+$$
+w_2 \leftarrow -0.1 + (0.5)(-1)(0) = -0.1
+$$
+
+$$
+b   \leftarrow 0   + (0.5)(-1)     = -0.5
+$$
 
 New weights: $(w_1,w_2,b) = (-0.3,-0.1,-0.5)$.
 

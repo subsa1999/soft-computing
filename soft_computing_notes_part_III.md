@@ -187,6 +187,7 @@ $w_1=w_2=1,\ \theta=1$ → $(0,0)\to 0$, others → 1. ✅
 | **Reinforcement** | Reward/penalty signal | Q-learning, TD-learning |
 
 General weight-update template:
+
 $$
 w_{ij}(t+1)  =  w_{ij}(t) + \Delta w_{ij}
 $$
@@ -250,16 +251,19 @@ $$
 Stochastic, energy-based learning for **Boltzmann machines** (symmetric, recurrent, binary stochastic neurons).
 
 **Energy of state $\mathbf{s}$:**
+
 $$
 E(\mathbf{s})  =  -\tfrac12 \sum_{i\ne j} w_{ij} s_i s_j - \sum_i \theta_i s_i
 $$
 
 **Boltzmann–Gibbs probability** of state:
+
 $$
 P(\mathbf{s})  =  \frac{e^{-E(\mathbf{s})/T}}{Z},\qquad Z = \sum_{\mathbf{s}'} e^{-E(\mathbf{s}')/T}
 $$
 
 **Learning rule** — minimize KL divergence between *clamped* (data) and *free-running* phases:
+
 $$
 \Delta w_{ij}  =  \frac{\eta}{T}\bigl(\langle s_i s_j\rangle_{\text{clamped}} - \langle s_i s_j\rangle_{\text{free}}\bigr)
 $$
@@ -308,6 +312,7 @@ repeat until no error:
 
 ### 📐 Perceptron Convergence Theorem (Novikoff, 1962)
 If training data is **linearly separable**, the perceptron rule converges in finite steps. Bound:
+
 $$
 \text{# updates}  \le  \left(\frac{R}{\gamma}\right)^{2}
 $$
@@ -344,6 +349,7 @@ One more epoch with no errors ⇒ **converged**: $w=(1,1),\ b=-1$. ✅
 - Output thresholded **after** training for classification.
 
 ### Cost & Update
+
 $$
 E(\mathbf{w})  =  \tfrac12 (t-\mathrm{net})^2,\qquad
 \Delta w_i  =  \eta (t-\mathrm{net}) x_i
@@ -417,28 +423,33 @@ A feed-forward net with **one hidden layer** of a finite number of neurons, usin
 - Learning rate $\eta$.
 
 ### Forward Pass
+
 $$
 z^{\ell}  =  W^{\ell} a^{\ell-1} + b^{\ell},\qquad a^{\ell} = f(z^{\ell})
 $$
 
 ### Backward Pass
 **Output layer error:**
+
 $$
 \delta^{L}  =  (a^{L} - t) \odot f'(z^{L})
 $$
 
 **Hidden layer error (backpropagation):**
+
 $$
 \delta^{\ell}  =  \bigl((W^{\ell+1})^{\top}\delta^{\ell+1}\bigr) \odot f'(z^{\ell})
 $$
 
 **Gradient w.r.t. weights & biases:**
+
 $$
 \frac{\partial E}{\partial W^{\ell}}  =  \delta^{\ell} (a^{\ell-1})^{\top},\qquad
 \frac{\partial E}{\partial b^{\ell}}  =  \delta^{\ell}
 $$
 
 **Weight update (gradient descent):**
+
 $$
 W^{\ell}  \leftarrow  W^{\ell} - \eta \delta^{\ell} (a^{\ell-1})^{\top}
 $$
@@ -484,6 +495,7 @@ for epoch = 1..E:
 **Network:** 2 inputs, 2 hidden, 1 output. Sigmoid activations.
 
 Weights:
+
 $$
 W^1 = \begin{bmatrix} 0.15 & 0.20 \\ 0.25 & 0.30 \end{bmatrix},\ b^1=\begin{bmatrix}0.35\\0.35\end{bmatrix},\ W^2 = \begin{bmatrix} 0.40 & 0.45 \end{bmatrix},\ b^2 = 0.60
 $$
@@ -560,6 +572,7 @@ for t = 1..T:
 ```
 
 ### Decay Schedules
+
 $$
 \eta(t) = \eta_0 \exp(-t/\tau_\eta),\qquad
 \sigma(t) = \sigma_0 \exp(-t/\tau_\sigma)
@@ -577,10 +590,15 @@ $$
 ## 📘 7.3 Hebbian Learning in NN
 
 ### Classical Hebbian
-$$\Delta w_{ij} = \eta x_i y_j$$
+
+$$
+\Delta w_{ij} = \eta x_i y_j
+$$
+
 Weights grow without bound — causes instability.
 
 ### Oja's Rule (1982) — Normalized Hebbian
+
 $$
 \Delta w_{ij}  =  \eta y_j (x_i - y_j w_{ij})
 $$
@@ -588,6 +606,7 @@ Drives weight vector to the **principal eigenvector** of the input covariance ma
 
 ### Sanger's Rule (Generalised Hebbian Algorithm)
 Extracts the **first $k$ principal components**:
+
 $$
 \Delta w_{ij}  =  \eta y_j\left(x_i - \sum_{k\le j} y_k w_{ik}\right)
 $$
@@ -617,16 +636,19 @@ A **single-layer, fully connected, recurrent** auto-associative memory.
 ```
 
 ### Update Rule
+
 $$
 s_i  \leftarrow  \mathrm{sgn}\left(\sum_{j\ne i} w_{ij} s_j - \theta_i\right)
 $$
 
 ### Storage (Hebbian) — train on $P$ patterns $\xi^{\mu}$:
+
 $$
 w_{ij}  =  \frac{1}{N}\sum_{\mu=1}^{P} \xi^{\mu}_i \xi^{\mu}_j,\quad i\ne j
 $$
 
 ### 📐 Energy Function
+
 $$
 E  =  -\tfrac12 \sum_{i\ne j} w_{ij} s_i s_j + \sum_i \theta_i s_i
 $$
@@ -643,8 +665,14 @@ $$
 
 ### ✏️ Solved Problem — Store 1 Pattern
 $N=4$, pattern $\xi=(+1,-1,+1,-1)$. Then
-$$w_{ij} = \tfrac{1}{4} \xi_i \xi_j \quad (i\ne j)$$
-$$W = \tfrac14\begin{bmatrix} 0 & -1 & 1 & -1\\ -1 & 0 & -1 & 1\\ 1 & -1 & 0 & -1\\ -1 & 1 & -1 & 0\end{bmatrix}$$
+
+$$
+w_{ij} = \tfrac{1}{4} \xi_i \xi_j \quad (i\ne j)
+$$
+
+$$
+W = \tfrac14\begin{bmatrix} 0 & -1 & 1 & -1\\ -1 & 0 & -1 & 1\\ 1 & -1 & 0 & -1\\ -1 & 1 & -1 & 0\end{bmatrix}
+$$
 
 Test with noisy input $s=(+1,+1,+1,-1)$ (bit 2 flipped). Update neuron 2:
 $\mathrm{net}_2 = -\tfrac14(1) + (-\tfrac14)(1) + \tfrac14(-1) = -0.75 < 0 \Rightarrow s_2 = -1$ ✅
@@ -690,21 +718,40 @@ Implements a **first-order Sugeno FIS** as a 5-layer feed-forward network.
 ### Layer-wise functions
 
 **Layer 1 — Adaptive (MF parameters):**
-$$O^1_i = \mu_{A_i}(x)$$
+
+$$
+O^1_i = \mu_{A_i}(x)
+$$
+
 Typically bell-shaped:
-$$\mu_{A_i}(x) = \frac{1}{1 + \left|\frac{x-c_i}{a_i}\right|^{2b_i}}$$
+
+$$
+\mu_{A_i}(x) = \frac{1}{1 + \left|\frac{x-c_i}{a_i}\right|^{2b_i}}
+$$
 
 **Layer 2 — Fixed (rule firing $w_i$):**
-$$O^2_i = w_i = \mu_{A_i}(x_1)\cdot\mu_{B_i}(x_2)$$
+
+$$
+O^2_i = w_i = \mu_{A_i}(x_1)\cdot\mu_{B_i}(x_2)
+$$
 
 **Layer 3 — Fixed (normalization):**
-$$O^3_i = \bar w_i = \frac{w_i}{\sum_k w_k}$$
+
+$$
+O^3_i = \bar w_i = \frac{w_i}{\sum_k w_k}
+$$
 
 **Layer 4 — Adaptive (consequent params):**
-$$O^4_i = \bar w_i f_i = \bar w_i(p_i x_1 + q_i x_2 + r_i)$$
+
+$$
+O^4_i = \bar w_i f_i = \bar w_i(p_i x_1 + q_i x_2 + r_i)
+$$
 
 **Layer 5 — Fixed (sum):**
-$$y = \sum_i \bar w_i f_i = \frac{\sum_i w_i f_i}{\sum_i w_i}$$
+
+$$
+y = \sum_i \bar w_i f_i = \frac{\sum_i w_i f_i}{\sum_i w_i}
+$$
 
 ### Hybrid Learning
 - **Forward pass:** Fix antecedent params; estimate consequent params $(p_i,q_i,r_i)$ by **Least-Squares**.
@@ -743,6 +790,7 @@ $$y = \sum_i \bar w_i f_i = \frac{\sum_i w_i f_i}{\sum_i w_i}$$
 ### Setup
 - $K$ output neurons, one per class; **one-hot** target.
 - Output uses **softmax** + **cross-entropy** loss:
+
 $$
 P(y=k\mid \mathbf{x}) = \frac{e^{z_k}}{\sum_j e^{z_j}},\qquad
 E = -\sum_k t_k \log P(y=k\mid \mathbf{x})
@@ -779,7 +827,11 @@ $$
 
 1. Flatten each pattern → vector $\xi^\mu \in \{-1,+1\}^{25}$.
 2. Compute weights:
-$$w_{ij} = \tfrac{1}{25}\sum_{\mu=1}^{2} \xi^\mu_i \xi^\mu_j,\quad i\ne j$$
+
+$$
+w_{ij} = \tfrac{1}{25}\sum_{\mu=1}^{2} \xi^\mu_i \xi^\mu_j,\quad i\ne j
+$$
+
 3. Feed noisy "L" (some pixels flipped) → run asynchronous updates → converges to clean "L". ✅
 
 Capacity ≈ $0.138 \times 25 \approx 3$ patterns; suitable here.

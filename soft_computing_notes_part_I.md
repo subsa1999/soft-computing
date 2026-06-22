@@ -353,7 +353,7 @@ A **Fuzzy Inference System (FIS)** maps crisp inputs to crisp outputs via fuzzy 
 | Method | Formula |
 |---|---|
 | **Centroid (COG)** | $x^* = \dfrac{\int x \mu(x) dx}{\int \mu(x) dx}$ |
-| **Bisector** | $x^*$ such that $\int_{a}^{x^*}\mu(x)dx = \int_{x^*}^{b}\mu(x)dx$ |
+| **Bisector** | $x^* $ such that $\int_{a}^{x^*}\mu(x)dx = \int_{x^*}^{b}\mu(x)dx$ |
 | **Mean of Maxima (MOM)** | Average $x$ where $\mu(x)$ peaks |
 | **Smallest of Max (SOM)** | Smallest $x$ where $\mu$ is max |
 | **Largest of Max (LOM)** | Largest $x$ where $\mu$ is max |

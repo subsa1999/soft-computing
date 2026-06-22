@@ -147,8 +147,8 @@ $$
 
 | Term | Definition |
 |---|---|
-| **Support** | $\operatorname{supp}(\tilde A) = \{x \in X : \mu_{\tilde A}(x) > 0\}$ |
-| **Core** | $\operatorname{core}(\tilde A) = \{x \in X : \mu_{\tilde A}(x) = 1\}$ |
+| **Support** | $\mathrm{supp}(\tilde A) = \{x \in X : \mu_{\tilde A}(x) > 0\}$ |
+| **Core** | $\mathrm{core}(\tilde A) = \{x \in X : \mu_{\tilde A}(x) = 1\}$ |
 | **Height** | $h(\tilde A) = \sup_{x \in X}\mu_{\tilde A}(x)$ |
 | **Normal set** | $h(\tilde A)=1$ |
 | **$\alpha$-cut** | $A_\alpha = \{x : \mu_{\tilde A}(x) \ge \alpha\}$ |
@@ -466,7 +466,7 @@ where $\theta$ is the **threshold** (bias).
 | Name | Formula | Range |
 |---|---|---|
 | **Step / Heaviside** | $f(x) = \begin{cases}1 & x \ge 0\\0 & x<0\end{cases}$ | $\{0,1\}$ |
-| **Signum** | $f(x) = \operatorname{sgn}(x)$ | $\{-1,0,1\}$ |
+| **Signum** | $f(x) = \mathrm{sgn}(x)$ | $\{-1,0,1\}$ |
 | **Linear** | $f(x) = x$ | $\mathbb{R}$ |
 | **Sigmoid (logistic)** | $f(x) = \dfrac{1}{1+e^{-x}}$ | $(0,1)$ |
 | **Tanh** | $f(x) = \dfrac{e^x - e^{-x}}{e^x + e^{-x}}$ | $(-1,1)$ |
@@ -693,11 +693,9 @@ Define:
 - $L$ = chromosome length, $p_c$ = crossover prob, $p_m$ = mutation prob
 
 $$
-\boxed{\;
 m(H, t+1) \;\ge\; m(H, t)\cdot\frac{f(H)}{\bar f}
 \cdot\left[1 - p_c\,\frac{\delta(H)}{L-1}\right]
 \cdot\left[1 - p_m\right]^{o(H)}
-\;}
 $$
 
 **Building Block Hypothesis (corollary):** GAs work by combining **short, low-order, high-fitness** schemata (*building blocks*) into better solutions.

@@ -334,33 +334,208 @@ A fuzzy set $\tilde A$ is convex **iff** every α-cut $A_\alpha$ is a convex (in
 
 ## 🧮 4.2 Standard MF Forms
 
-### Triangular
+### A. Triangular MF
+
 $$
 \mu(x; a,b,c) = \max\left(\min\left(\frac{x-a}{b-a}, \frac{c-x}{c-b}\right), 0\right)
 $$
 
-### Trapezoidal
+**Parameters:** $a$ = left foot, $b$ = peak (μ = 1), $c$ = right foot.
+
+```
+   μ(x)
+    1 ┤              ●  ← peak at x = b
+      │            ╱   ╲
+      │          ╱       ╲
+      │        ╱           ╲
+    0.5┤      ●               ●     ← crossover (μ = 0.5)
+      │    ╱                   ╲
+      │  ╱                       ╲
+    0 ┼●────┬────────┬────────┬────●─────► x
+       a    │        b        │    c
+            └─ left slope ────┘
+            (rising 1/(b−a))    (falling 1/(c−b))
+```
+
+- **Core:** {b}
+- **Support:** $(a, c)$
+- **Symmetric** when $b - a = c - b$
+- ✅ Simple, fast — most popular MF in fuzzy controllers.
+
+---
+
+### B. Trapezoidal MF
+
 $$
 \mu(x; a,b,c,d) = \max\left(\min\left(\frac{x-a}{b-a}, 1, \frac{d-x}{d-c}\right), 0\right)
 $$
 
-### Gaussian
+**Parameters:** $a$ = left foot, $b$ = left shoulder, $c$ = right shoulder, $d$ = right foot.
+
+```
+   μ(x)
+    1 ┤        ●━━━━━━━━━━━━━●      ← flat top (core, μ = 1)
+      │       ╱                ╲
+      │     ╱                    ╲
+      │   ╱                        ╲
+    0.5┤  ●                          ●
+      │ ╱                              ╲
+      │╱                                ╲
+    0 ┼●──────┬──────────────┬──────────●──► x
+       a      b              c          d
+              └─── Core ────┘
+       └──────── Support ─────────────┘
+```
+
+- **Core:** $[b, c]$ (flat plateau)
+- **Support:** $(a, d)$
+- ✅ Used when a *range* of values has full membership (e.g., "around 25–30 °C").
+- Triangular is a special case where $b = c$.
+
+---
+
+### C. Gaussian MF
+
 $$
 \mu(x; c,\sigma) = \exp\left(-\frac{(x-c)^2}{2\sigma^2}\right)
 $$
 
-### Generalized Bell
+**Parameters:** $c$ = center (peak), $\sigma$ = width (std-dev).
+
+```
+   μ(x)
+    1 ┤              ●●●           ← peak at x = c, μ = 1
+      │            ●●   ●●
+      │          ●●       ●●
+      │         ●           ●
+    0.5┤       ●               ●
+      │      ●                   ●
+      │    ●●                       ●●
+      │ ●●●                            ●●●
+    0 ┼─────────┬─────c─────┬──────────────► x
+              c−σ          c+σ
+              └─── 2σ width ─┘
+```
+
+- **Smooth and differentiable** everywhere → ideal for gradient-based tuning (ANFIS).
+- **Always > 0** (infinite support).
+- Symmetric, single peak.
+- Larger $\sigma$ ⇒ broader/fuzzier; smaller $\sigma$ ⇒ sharper.
+
+---
+
+### D. Generalized Bell MF
+
 $$
-\mu(x; a,b,c) = \frac{1}{1+\left|\dfrac{x-c}{a}\right|^{2b}}
+\mu(x; a,b,c) = \frac{1}{1 + \left|\dfrac{x-c}{a}\right|^{2b}}
 $$
 
-### Sigmoidal (S-shaped / Z-shaped pair)
+**Parameters:** $a$ = half-width at $\mu = 0.5$, $b$ = slope steepness, $c$ = center.
+
+```
+   μ(x)
+    1 ┤        ━━━━●━━━━           ← flatter top than Gaussian
+      │       ╱         ╲
+      │      ╱             ╲
+      │    ╱                  ╲
+    0.5┤   ●                     ●  ← crossover at x = c ± a
+      │  ╱                         ╲
+      │ ╱                              ╲
+      │╱                                  ╲
+    0 ┼──┬──────c──────┬─────────────────► x
+        c−a            c+a
+        └──── 2a width at μ = 0.5 ────┘
+```
+
+- 3 parameters ⇒ **more flexibility** than Gaussian (controls plateau width independently).
+- Larger $b$ ⇒ sharper transition (rectangular-like); smaller $b$ ⇒ rounder.
+- Differentiable — also popular in ANFIS.
+
+---
+
+### E. Sigmoidal MFs (S-shape & Z-shape)
+
 $$
-S(x; a,c) = \frac{1}{1+e^{-a(x-c)}},\qquad Z(x; a,c)=1-S(x;a,c)
+S(x; a, c) = \frac{1}{1+e^{-a(x-c)}}, \qquad Z(x; a, c) = 1 - S(x; a, c)
 $$
 
-### Π (Pi) MF
-Bell-like — combination of S and Z.
+**Parameters:** $a$ = slope (sign determines direction), $c$ = crossover point ($\mu = 0.5$).
+
+```
+   S-shape (open right — "high", "tall", "hot")     Z-shape (open left — "low", "short", "cold")
+   μ(x)                                              μ(x)
+    1 ┤              ━━━━━━━━━━━                     1 ┤━━━━━━━━━━
+      │            ╱                                   │           ╲
+      │          ╱                                     │            ╲
+      │        ╱                                       │              ╲
+    0.5┤      ●                                      0.5┤              ●
+      │    ╱                                           │                ╲
+      │  ╱                                             │                  ╲
+      │╱                                               │                    ╲
+    0 ┼────────c───────────────► x                   0 ┼──────c─────────────► x
+              (crossover)                                     (crossover)
+```
+
+- **Monotonic** (not bell-shaped) — represents *one-sided* concepts.
+- Larger $|a|$ ⇒ steeper transition.
+- Often used at the *extreme ends* of a variable's term-set (e.g., "very low", "very high").
+
+---
+
+### F. Π (Pi) MF
+
+$$
+\Pi(x; a, b, c, d) = S(x; a, b) \cdot Z(x; c, d)
+$$
+
+(Or piecewise polynomial; combines an S-shape rising side with a Z-shape falling side.)
+
+```
+   μ(x)
+    1 ┤           ╭━━━━━━━━━━╮            ← smooth flat top
+      │          ╱             ╲
+      │        ╱                 ╲
+      │      ╱                     ╲
+    0.5┤    ●                         ●
+      │   ╱                             ╲
+      │ ╱                                  ╲
+      │╱                                      ╲
+    0 ┼──┬────┬─────────────┬────┬──────────► x
+        a    b              c    d
+        └─ rising (S) ─┘    └─ falling (Z) ─┘
+```
+
+- **Smooth bell** — generalises trapezoid + Gaussian.
+- All parameters tunable: foot of S ($a$), shoulder ($b$), shoulder ($c$), foot of Z ($d$).
+- Continuous & differentiable; good for control surfaces requiring smoothness.
+
+---
+
+### 📊 Visual Comparison (Same Universe)
+
+```
+   μ(x)                                              ┊
+    1 ┤   ┌──────────────┐ ← Trapezoid             ┊
+      │   │   ╭───╮      │                          ┊
+      │   │  ╱     ╲     │     Gaussian             ┊
+      │   │ ╱       ╲    │      ⋰⋱                  ┊
+      │   │╱  ╱╲     ╲   │    ⋰   ⋱   ← Bell        ┊
+    0.5┤  ╳╲ ╱  ╲ ╳ ╳    │   ⋰     ⋱                ┊
+      │  │ ╳    ╲  ╲ ╲   │  ⋰       ⋱               ┊
+      │  │╱│    Triangle ⋰           ⋱              ┊
+      │  ╱ │       ╲     │⋰             ⋱           ┊
+    0 ┼──┴─┴────────┴────┴──────────────────────► x
+         a  b         c   d
+```
+
+| MF type | Params | Smoothness | Speed | Best for |
+|---|---|---|---|---|
+| Triangular | 3 | C⁰ (non-smooth) | ⚡ fast | Real-time controllers |
+| Trapezoidal | 4 | C⁰ | ⚡ fast | Range-valued concepts |
+| Gaussian | 2 | C∞ smooth | medium | ANFIS / gradient tuning |
+| Gen-Bell | 3 | C∞ smooth | medium | ANFIS with flexible plateau |
+| Sigmoidal | 2 | C∞ smooth | medium | Open-ended extremes |
+| Π (Pi) | 4 | C∞ smooth | slow | Smooth controllers |
 
 ---
 

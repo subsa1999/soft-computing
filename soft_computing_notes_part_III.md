@@ -316,6 +316,7 @@ If training data is **linearly separable**, the perceptron rule converges in fin
 $$
 \text{# updates}  \le  \left(\frac{R}{\gamma}\right)^{2}
 $$
+
 where $R=\max\|\mathbf{x}\|$ and $\gamma$ = margin of best separator.
 
 ### 📐 XOR Limitation (Minsky-Papert 1969)
@@ -602,6 +603,7 @@ Weights grow without bound — causes instability.
 $$
 \Delta w_{ij}  =  \eta y_j (x_i - y_j w_{ij})
 $$
+
 Drives weight vector to the **principal eigenvector** of the input covariance matrix → **PCA**.
 
 ### Sanger's Rule (Generalised Hebbian Algorithm)

@@ -560,6 +560,7 @@ $$
 $$
 \mu_{\tilde A}(x) = \begin{cases} 1 & x=x_0\\ 0 & \text{else}\end{cases}
 $$
+
 Most common in real-time controllers — cheap, exact.
 
 ### B. Gaussian fuzzification
@@ -567,6 +568,7 @@ Most common in real-time controllers — cheap, exact.
 $$
 \mu_{\tilde A}(x) = \exp\left(-\frac{(x-x_0)^2}{2\sigma^2}\right)
 $$
+
 Smooth; accounts for measurement noise of std-dev $\sigma$.
 
 ### C. Triangular fuzzification
@@ -622,6 +624,7 @@ $$
 $$
 \tilde A  =  \bigcup_{\lambda \in (0,1]} \lambda \cdot A_\lambda
 $$
+
 where $\lambda \cdot A_\lambda$ has MF equal to $\lambda$ on $A_\lambda$ and 0 elsewhere.
 
 ### ✏️ Example
@@ -668,6 +671,7 @@ z^*  =  \frac{\displaystyle\int z \mu_{\tilde C}(z) dz}{\displaystyle\int \mu_{\
 \qquad\text{discrete: } 
 z^* = \frac{\sum_i z_i \mu_{\tilde C}(z_i)}{\sum_i \mu_{\tilde C}(z_i)}
 $$
+
 *Most popular*; balanced.
 
 ### B. Bisector (BOA)
@@ -691,6 +695,7 @@ $z^*=\min G$ or $\max G$ respectively.
 $$
 z^*  =  \frac{\sum_i w_i \bar z_i}{\sum_i w_i}
 $$
+
 where $\bar z_i$ is the peak of the $i$-th output MF and $w_i$ its firing strength.
 
 ### F. Center of Sums (COS)
@@ -896,6 +901,7 @@ Once each rule fires to produce $\tilde B_i'$, all rule outputs are **combined**
 $$
 \tilde B'  =  \bigcup_{i=1}^N \tilde B_i'
 $$
+
 Typical aggregation operators:
 
 | Method | Definition |
